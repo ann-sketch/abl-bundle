@@ -2,7 +2,7 @@
 
 <?php
 
-$ims_connect = mysqli_connect("localhost", "root", "", "ims_db_gh");
+$ims_connect = mysqli_connect(getenv('hostname'), getenv('username'), getenv('password'), "ims_db_gh");
 $query = "SELECT name, qty FROM `products`";
 $result = mysqli_query($ims_connect, $query);
 
