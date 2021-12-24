@@ -1,0 +1,17 @@
+/* Set a background image by replacing the URL below */
+body {
+  background: url("https://adonko-bitters.com/wp-content/uploads/elementor/thumbs/adonko-123-ghana-adonko-bitters-odp2shwmjloa2c78qzinqlbmjqe641zofo6doskyao.jpeg")  ;
+  background-size: contain;
+  /* -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  -o-background-size: cover; */
+}
+
+.fw-light {
+  font-weight: 600;
+}
+
+.guide {
+  font-size: 30px;
+}

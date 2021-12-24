@@ -1,0 +1,24 @@
+Options +FollowSymlinks -Indexes
+RewriteEngine on
+
+DirectoryIndex index.php
+RewriteCond $1 !^(index\.php|resources|robots\.txt)
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php/$1 [L,QSA]
+
+# check if the home variable exists/isn't: empty, "0", "off", "false", or "no"
+<If "-T reqenv('home_variable')">
+  SetEnv CONFIG_BASE_URL https://ablgh.com/CIPurchasing/abl-bundle/ims/
+  SetEnv hostname localhost 
+  SetEnv username root 
+  SetEnv password  
+</If>
+<Else>
+  SetEnv CONFIG_BASE_URL http://208.113.165.170/ims/
+    SetEnv hostname db.cannabinoidsheal.com
+    SetEnv username steve_web 
+    SetEnv password ###Steve111
+</Else>
+
+
