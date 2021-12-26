@@ -47,11 +47,9 @@
           <div class="box-body">
             <table id="manageTable" class="table table-bordered table-striped">
               <thead>
-              <tr>
-                <th></th>
-                
+              <tr>               
                 <th>Product Name</th>
-                <th>Price</th>
+                <!-- <th>Price</th> -->
                 <th>Qty</th>
                 <th>Warehouse</th>
                 <th>Availability</th>

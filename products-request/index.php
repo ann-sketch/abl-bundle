@@ -19,15 +19,27 @@ function calc_raw_stock($ims_connect)
 }
 $product_forecast = calc_raw_stock($ims_connect);
 
-$next_level_requests = mysqli_num_rows(mysqli_query($procurement_connect, "SELECT id FROM products_request WHERE product = 'Adonko Next Level'"));
-$ginger_requests = mysqli_num_rows(mysqli_query($procurement_connect, "SELECT id FROM products_request WHERE product = 'Adonko Ginger'"));
-$adonko_123_requests = mysqli_num_rows(mysqli_query($procurement_connect, "SELECT id FROM products_request WHERE product = 'Adonko 123'"));
+// Adonko Dry Gin 
+// Adonko Atadwe Ginger (Bottle)
+// Adonko 123 (Roll)
+// Adonko Bitters (Rolls)
+// Adonko Bitters (Bottle)
+// Adonko 123 (Bottle)
 
-$next_level_number_of_finished_products = get_qty($ims_products_connect, "Adonko Next Level");
-$ginger_number_of_finished_products = get_qty($ims_products_connect, "Adonko Ginger");
-$adonko_123_number_of_finished_products = get_qty($ims_products_connect, "Adonko 123");
+$dry_gin_requests = mysqli_num_rows(mysqli_query($procurement_connect, "SELECT id FROM products_request WHERE product = 'Adonko Dry Gin (Roll)'"));
+$atadwe_ginger_requests = mysqli_num_rows(mysqli_query($procurement_connect, "SELECT id FROM products_request WHERE product = 'Adonko Atadwe Ginger (Bottle)'"));
+$adonko_123_roll_requests = mysqli_num_rows(mysqli_query($procurement_connect, "SELECT id FROM products_request WHERE product = 'Adonko 123 (Roll)'"));
+$adonko_123_bottle_requests = mysqli_num_rows(mysqli_query($procurement_connect, "SELECT id FROM products_request WHERE product = 'Adonko 123 (Bottle)'"));
+$adonko_bitters_roll_requests = mysqli_num_rows(mysqli_query($procurement_connect, "SELECT id FROM products_request WHERE product = 'Adonko Bitters (Roll)'"));
+$adonko_bitters_bottle_requests = mysqli_num_rows(mysqli_query($procurement_connect, "SELECT id FROM products_request WHERE product = 'Adonko Bitters (Bottle)'"));
 
 
+$dry_gin_number_of_finished_products = get_qty($ims_products_connect, "Adonko Dry Gin (Roll)");
+$atadwe_ginger_number_of_finished_products = get_qty($ims_products_connect, "Adonko Atadwe Ginger (Bottle)");
+$adonko_123_roll_number_of_finished_products = get_qty($ims_products_connect, "Adonko 123 (Roll)");
+$adonko_123_bottle_number_of_finished_products = get_qty($ims_products_connect, "Adonko 123 (Bottle)");
+$adonko_bitters_roll_number_of_finished_products = get_qty($ims_products_connect, "Adonko Bitters (Roll)");
+$adonko_bitters_bottle_number_of_finished_products = get_qty($ims_products_connect, "Adonko Bitters (Bottle)");
 
 function get_product_card($name, $requests, $number_of_products, $url, $procurement_connect, $ims_products_connect)
 {
@@ -161,9 +173,13 @@ function get_qty($ims_products_connect, $products)
                 <!-- ============================================================== -->
                 <div class="row justify-content-center">
                     <?php
-                    echo get_product_card("Adonko Next Level", $next_level_requests, $next_level_number_of_finished_products, "next-level", $procurement_connect, $ims_products_connect);
-                    echo get_product_card("Adonko Ginger", $ginger_requests, $ginger_number_of_finished_products, "ginger", $procurement_connect, $ims_products_connect);
-                    echo get_product_card("Adonko 123", $adonko_123_requests, $adonko_123_number_of_finished_products, "123", $procurement_connect, $ims_products_connect) ?>
+                    echo get_product_card("Adonko Dry Gin (Roll)", $dry_gin_requests, $dry_gin_number_of_finished_products, "dry-gin", $procurement_connect, $ims_products_connect);
+                    echo get_product_card("Adonko Atadwe Ginger (Bottle)", $atadwe_ginger_requests, $atadwe_ginger_number_of_finished_products, "atadwe-ginger", $procurement_connect, $ims_products_connect);
+                    echo get_product_card("Adonko 123 (Roll)", $adonko_123_roll_requests, $adonko_123_roll_number_of_finished_products, "123-roll", $procurement_connect, $ims_products_connect);
+                    echo get_product_card("Adonko 123 (Bottle)", $adonko_123_bottle_requests, $adonko_123_bottle_number_of_finished_products, "123-bottle", $procurement_connect, $ims_products_connect);
+                    echo get_product_card("Adonko Bitters (Roll)", $adonko_bitters_roll_requests, $adonko_bitters_roll_number_of_finished_products, "bitter-roll", $procurement_connect, $ims_products_connect);
+                    echo get_product_card("Adonko Bitters (Bottle)", $adonko_bitters_bottle_requests, $adonko_bitters_bottle_number_of_finished_products, "bitters-bottle", $procurement_connect, $ims_products_connect);
+                    ?>
                 </div>
             </div>
         </div>

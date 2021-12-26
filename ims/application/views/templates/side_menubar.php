@@ -144,6 +144,8 @@
 
         <?php endif; ?>
         <!-- user permission info -->
+        <li><a href="<?php echo base_url('../app') ?>"><i class="glyphicon glyphicon-log-out"></i> <span>Go To Procurement</span></a></li>
+        <li><a href="<?php echo base_url('../ims-products') ?>"><i class="glyphicon glyphicon-log-out"></i> <span>Go To Raw Stock Inventory</span></a></li>
         <li><a href="<?php echo base_url('auth/logout') ?>"><i class="glyphicon glyphicon-log-out"></i> <span>Logout</span></a></li>
 
       </ul>

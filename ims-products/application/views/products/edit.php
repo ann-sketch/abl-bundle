@@ -48,7 +48,7 @@
                   <img src="<?php echo base_url() . $product_data['image'] ?>" width="150" height="150" class="img-circle">
                 </div>
 
-                <div class="form-group">
+                <div class="form-group" style="display: none">
                   <label for="product_image">Update Image</label>
                   <div class="kv-avatar">
                       <div class="file-loading">
@@ -77,7 +77,7 @@
                   <input type="text" class="form-control" id="qty" name="qty" placeholder="Enter Qty" value="<?php echo $product_data['qty']; ?>" autocomplete="off" />
                 </div>
 
-                <div class="form-group">
+                <div class="form-group" style="display: none">
                   <label for="description">Description</label>
                   <textarea type="text" class="form-control" id="description" name="description" placeholder="Enter 
                   description" autocomplete="off">
@@ -88,7 +88,7 @@
                 <?php $attribute_id = json_decode($product_data['attribute_value_id']); ?>
                 <?php if($attributes): ?>
                   <?php foreach ($attributes as $k => $v): ?>
-                    <div class="form-group">
+                    <div class="form-group" style="display: none">
                       <label for="groups"><?php echo $v['attribute_data']['name'] ?></label>
                       <select class="form-control select_group" id="attributes_value_id" name="attributes_value_id[]" multiple="multiple">
                         <?php foreach ($v['attribute_value'] as $k2 => $v2): ?>
@@ -99,7 +99,7 @@
                   <?php endforeach ?>
                 <?php endif; ?>
 
-                <div class="form-group">
+                <div class="form-group" style="display: none">
                   <label for="brands">Items</label>
                   <?php $brand_data = json_decode($product_data['brand_id']); ?>
                   <select class="form-control select_group" id="brands" name="brands[]" multiple="multiple">
@@ -109,7 +109,7 @@
                   </select>
                 </div>
 
-                <div class="form-group">
+                <div class="form-group" style="display: none">
                   <label for="category">Category</label>
                   <?php $category_data = json_decode($product_data['category_id']); ?>
                   <select class="form-control select_group" id="category" name="category[]" multiple="multiple">

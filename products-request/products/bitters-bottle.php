@@ -2,7 +2,7 @@
 $procurement_connect = mysqli_connect("localhost", "root", "", "procurement_db");
 $ims_connect = mysqli_connect("localhost", "root", "", "ims_db_gh");
 $ims_products_connect = mysqli_connect("localhost", "root", "", "ims_products_db_gh");
-$query = "SELECT * FROM products_request WHERE product = 'Adonko Ginger' ORDER BY ID DESC";
+$query = "SELECT * FROM products_request WHERE product = 'Adonko Bitters (Bottle)' ORDER BY ID DESC";
 $result = mysqli_query($procurement_connect, $query);
 
 function calc_raw_stock($ims_connect)
@@ -17,12 +17,12 @@ function calc_raw_stock($ims_connect)
     }
 }
 $product_forecast = calc_raw_stock($ims_connect);
-$number_of_finished_products = get_qty($ims_products_connect, "Adonko Ginger");
-$total_number_of_products_requested = mysqli_fetch_assoc(mysqli_query($procurement_connect, "SELECT SUM(qty) FROM products_request WHERE product = 'Adonko Ginger' AND is_approved = '0' ORDER BY ID DESC"))['SUM(qty)'];
+$number_of_finished_products = get_qty($ims_products_connect, "Adonko Bitters (Bottle)");
+$total_number_of_products_requested = mysqli_fetch_assoc(mysqli_query($procurement_connect, "SELECT SUM(qty) FROM products_request WHERE product = 'Adonko Bitters (Bottle)' AND is_approved = '0' ORDER BY ID DESC"))['SUM(qty)'];
 if ($number_of_finished_products > $total_number_of_products_requested) {
     $product_deficiency = 0;
 } else {
-    $product_deficiency = abs(get_qty($ims_products_connect, "Adonko Ginger") - $total_number_of_products_requested);
+    $product_deficiency = abs(get_qty($ims_products_connect, "Adonko Bitters (Bottle)") - $total_number_of_products_requested);
 }
 
 function get_qty($ims_products_connect, $products)
@@ -98,7 +98,7 @@ function get_qty($ims_products_connect, $products)
                     <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
                         <div class="d-md-flex">
                             <ol class="breadcrumb ms-auto">
-                                <li><a href="#" class="fw-normal">Back To Dashboard</li>
+                            <li><a href="../" class="fw-normal">Back To Dashboard</li>
                             </ol>
                         </div>
                     </div>
@@ -110,18 +110,18 @@ function get_qty($ims_products_connect, $products)
                 <!-- Three charts -->
                 <!-- ============================================================== -->
                 <div class="row justify-content-center">
-                    <div class="col-lg-6 col-md-12">
+                    <div class="col-lg-2 col-md-12">
                         <div class="white-box analytics-info" style="display: flex; height: 85%;">
-                            <ul class="list-inline two-part d-flex align-items-center justify-content-around mb-0">
-                                <h3 class="box-title m-0">Product Name</h3>
-                                <li style="margin-left: 200px;">
-                                    <span class="counter text-success">Ginger</span>
+                            <ul class="list-inline two-part d-flex align-items-center justify-content-around mb-0 flex-wrap">
+                                <h3 class="box-title m-0" style="font-size: 20px;">Product Name</h3>
+                                <li style="margin-left: 0px;margin-top: -50px;">
+                                    <span class="counter text-success">Adonko Bitters (Bottle)</span>
                                 </li>
                             </ul>
                         </div>
                     </div>
-                    <div class="col-lg-6 col-md-12">
-                        <div class="white-box analytics-info">
+                    <div class="col-lg-4 col-md-12">
+                        <div class="white-box analytics-info" style="height: 85%;">
                             <ul class="list-inline two-part d-flex align-items-center mb-0">
                                 <h3 class="box-title m-0">Number Of Finished Products Available</h3>
                                 <li class="ms-auto">

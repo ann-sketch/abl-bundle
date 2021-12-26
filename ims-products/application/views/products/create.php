@@ -69,9 +69,9 @@
                   <!-- <input type="text" class="form-control" id="sku" name="sku" placeholder="Enter sku" autocomplete="off" /> -->
                 <!-- </div> -->
 
-                <div class="form-group">
+                <div class="form-group" style="display: none;">
                   <label for="price">Price</label>
-                  <input type="text" class="form-control" id="price" name="price" placeholder="Enter price" autocomplete="off" />
+                  <input type="text" class="form-control" id="price" name="price" placeholder="Enter price" value="1" autocomplete="off" />
                 </div>
 
                 <div class="form-group">

@@ -69,10 +69,10 @@ class Controller_Products extends Admin_Controller
 
 
 			$result['data'][$key] = array(
-				$img,
+				// $img,
 				// $value['sku'],
 				$value['name'],
-				$value['price'],
+				// $value['price'],
                 $value['qty'] . ' ' . $qty_status,
                 $store_data['name'],
 				$availability,

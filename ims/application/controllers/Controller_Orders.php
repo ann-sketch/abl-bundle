@@ -76,7 +76,7 @@ class Controller_Orders extends Admin_Controller
 				$value['customer_phone'],
 				$date_time,
 				$count_total_item,
-				$value['net_amount'],
+				// $value['net_amount'],
 				// $paid_status,
 				$buttons
 			);
@@ -266,7 +266,7 @@ class Controller_Orders extends Admin_Controller
 			<head>
 			  <meta charset="utf-8">
 			  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-			  <title>AdminLTE 2 | Invoice</title>
+			  <title>Invoice</title>
 			  <!-- Tell the browser to be responsive to screen width -->
 			  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 			  <!-- Bootstrap 3.3.7 -->
@@ -296,7 +296,6 @@ class Controller_Orders extends Admin_Controller
 			        
 			        <b>Bill ID:</b> '.$order_data['bill_no'].'<br>
 			        <b>Name:</b> '.$order_data['customer_name'].'<br>
-			        <b>Address:</b> '.$order_data['customer_address'].' <br />
 			        <b>Phone:</b> '.$order_data['customer_phone'].'
 			      </div>
 			      <!-- /.col -->
@@ -310,9 +309,7 @@ class Controller_Orders extends Admin_Controller
 			          <thead>
 			          <tr>
 			            <th>Product name</th>
-			            <th>Price</th>
 			            <th>Qty</th>
-			            <th>Amount</th>
 			          </tr>
 			          </thead>
 			          <tbody>'; 
@@ -323,9 +320,7 @@ class Controller_Orders extends Admin_Controller
 			          	
 			          	$html .= '<tr>
 				            <td>'.$product_data['name'].'</td>
-				            <td>'.$v['rate'].'</td>
 				            <td>'.$v['qty'].'</td>
-				            <td>'.$v['amount'].'</td>
 			          	</tr>';
 			          }
 			          

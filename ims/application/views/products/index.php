@@ -48,10 +48,10 @@
             <table id="manageTable" class="table table-bordered table-striped">
               <thead>
               <tr>
-                <th></th>
+                <!-- <th></th> -->
                 
                 <th>Stock Name</th>
-                <th>Price</th>
+                <!-- <th>Price</th> -->
                 <th>Qty</th>
                 <th>Warehouse</th>
                 <th>Availability</th>
