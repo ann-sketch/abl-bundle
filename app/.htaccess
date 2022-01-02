@@ -11,6 +11,7 @@ RewriteRule ^(.*)$ index.php/$1 [L,QSA]
 <If "-T reqenv('home_variable')">
     SetEnv CONFIG_BASE_URL https://ablgh.com/CIPurchasing/abl-bundle/app/
     SetEnv ims_dept_url https://ablgh.com/CIPurchasing/abl-bundle/ims-dept/
+    SetEnv req_url https://ablgh.com/CIPurchasing/abl-bundle/customer-request/
     SetEnv hostname localhost 
     SetEnv username root 
     SetEnv password  
@@ -19,6 +20,7 @@ RewriteRule ^(.*)$ index.php/$1 [L,QSA]
 <Else>
     SetEnv CONFIG_BASE_URL http://208.113.165.170/app/
     SetEnv ims_dept_url http://208.113.165.170/ims-dept/
+    SetEnv req_url http://208.113.165.170/customer-request/
     SetEnv hostname db.cannabinoidsheal.com
     SetEnv username steve_web 
     SetEnv password ###Steve111

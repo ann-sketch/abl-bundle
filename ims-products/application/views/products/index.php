@@ -115,7 +115,7 @@ $j(document).ready(function() {
   manageTable = $('#manageTable').DataTable({
     dom: 'Bfrtip',
         buttons: [
-            'copy', 'csv', 'excel', 'print'
+            'copy', 'csv', 'excel'
         ], 
     'ajax': base_url + 'Controller_Products/fetchProductData',
     'order': []

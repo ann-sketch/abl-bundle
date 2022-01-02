@@ -1,5 +1,5 @@
 <?php
-require_once("./connection.php")
+require_once("../env.php")
 ?>
 
 <!DOCTYPE html>
@@ -64,9 +64,12 @@ require_once("./connection.php")
                         </div>
                         <div class="col-6">
                             <select name="products" id="products" required>
-                                <option value="Adonko Next Level">Adonko Next Level</option>
-                                <option value="Adonko 123">Adonko 123</option>
-                                <option value="Adonko Ginger">Adonko Ginger</option>
+                                <option value="Adonko Dry Gin">Adonko Dry Gin</option>
+                                <option value="Adonko Atadwe Ginger (Bottle)">Adonko Atadwe Ginger (Bottle)</option>
+                                <option value="Adonko 123 (Roll)">Adonko 123 (Roll)</option>
+                                <option value="Adonko Bitters (Roll)">Adonko Bitters (Roll)</option>
+                                <option value="Adonko Bitters (Bottle)">Adonko Bitters (Bottle)</option>
+                                <option value="Adonko 123 (Bottle)">Adonko 123 (Bottle)</option>
                             </select>
                         </div>
                     </div>

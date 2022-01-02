@@ -56,7 +56,7 @@ function get_product_card($name, $requests, $number_of_products, $url, $procurem
             </h3>
             <ul class="list-inline two-part d-flex align-items-center m-0">
                 <h3 class="m-0">Number of Requests</h3>
-                <li class="ms-auto"><span class="counter text-success">' . $requests . '</span></li>
+                <li class="ms-auto"><span class="counter text-success">' . ($requests ? $requests : 0) . '</span></li>
             </ul>
             <ul class="list-inline two-part d-flex align-items-center m-0">
                 <h3 class="m-0">Products Remaining</h3>

@@ -131,7 +131,7 @@ function get_qty($ims_products_connect, $products)
                             <ul class="list-inline two-part d-flex align-items-center mb-0">
                                 <h3 class="box-title m-0">Total Number of Products Requested</h3>
                                 <li class="ms-auto">
-                                    <span class="counter text-success"><?php echo $total_number_of_products_requested ?></span>
+                                    <span class="counter text-success"><?php echo $total_number_of_products_requested ? $total_number_of_products_requested : 0; ?></span>
                                 </li>
                             </ul>
                             <ul class="list-inline two-part d-flex align-items-center mb-0">
