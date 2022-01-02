@@ -10,7 +10,7 @@ RewriteRule ^(.*)$ index.php/$1 [L,QSA]
 # check if the home variable exists/isn't: empty, "0", "off", "false", or "no"
 <If "-T reqenv('home_variable')">
     SetEnv CONFIG_BASE_URL https://ablgh.com/CIPurchasing/abl-bundle/app/
-    SetEnv ims_dept_url https://ablgh.com/CIPurchasing/ims-dept/
+    SetEnv ims_dept_url https://ablgh.com/CIPurchasing/abl-bundle/ims-dept/
     SetEnv hostname localhost 
     SetEnv username root 
     SetEnv password  

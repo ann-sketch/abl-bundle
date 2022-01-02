@@ -1,7 +1,7 @@
 <?php
-$procurement_connect = mysqli_connect("localhost", "root", "", "procurement_db");
-$ims_connect = mysqli_connect("localhost", "root", "", "ims_db_gh");
-$ims_products_connect = mysqli_connect("localhost", "root", "", "ims_products_db_gh");
+
+require_once("../../env.php");
+
 $query = "SELECT * FROM products_request WHERE product = 'Adonko Next Level' ORDER BY ID DESC";
 $result = mysqli_query($procurement_connect, $query);
 
