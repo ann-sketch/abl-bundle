@@ -118,7 +118,8 @@ $j(document).ready(function() {
     dom: 'Bfrtip',
         buttons: [
             'copy', 'csv', 'excel'
-        ], 
+        ],
+        paging: false,
     'ajax': base_url + 'Controller_Products/fetchProductData',
     'order': []
   });

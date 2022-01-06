@@ -2,20 +2,25 @@
 
 <?php
 
-$ims_connect = mysqli_connect(getenv('hostname'), getenv('username'), getenv('password'), "ims_db_gh");
+$hostname = getenv('hostname');
+$username = getenv('username');
+$password = getenv('password');
+
+
+$ims_connect = mysqli_connect($hostname, $username, $password, "ims_db_gh");
 $query = "SELECT name, qty FROM `products`";
 $result = mysqli_query($ims_connect, $query);
 
 function calc_raw_stock($ims_connect)
 {
-    $cap_qty = mysqli_fetch_assoc(mysqli_query($ims_connect, "SELECT * FROM `products` WHERE `name` = 'cap'"))['qty'];
-    $preform_qty = mysqli_fetch_assoc(mysqli_query($ims_connect, "SELECT * FROM `products` WHERE `name` = 'preform'"))['qty'];
-    $box_qty = mysqli_fetch_assoc(mysqli_query($ims_connect, "SELECT * FROM `products` WHERE `name` = 'carton'"))['qty'];
+  $cap_qty = mysqli_fetch_assoc(mysqli_query($ims_connect, "SELECT * FROM `products` WHERE `name` = 'cap'"))['qty'];
+  $preform_qty = mysqli_fetch_assoc(mysqli_query($ims_connect, "SELECT * FROM `products` WHERE `name` = 'preform'"))['qty'];
+  $box_qty = mysqli_fetch_assoc(mysqli_query($ims_connect, "SELECT * FROM `products` WHERE `name` = 'carton'"))['qty'];
 
-    $number_of_products = min($cap_qty, $preform_qty);
-    if ($number_of_products <= $box_qty * 24) {
-        return $number_of_products;
-    }
+  $number_of_products = min($cap_qty, $preform_qty);
+  if ($number_of_products <= $box_qty * 24) {
+    return $number_of_products;
+  }
 }
 $product_forecast = calc_raw_stock($ims_connect);
 
@@ -42,33 +47,39 @@ $product_forecast = calc_raw_stock($ims_connect);
 
       <div class="row">
         <?php while ($row = mysqli_fetch_array($result)) {
-          echo "<div class='col-lg-3 col-xs-6'>
-          <div class='small-box bg-aqua'>
+          $colors = ['red', 'gray', 'aqua', 'blue', 'yellow', 'orange', "purple"];
+          $colors = $colors[array_rand($colors)];
+          echo "<div class='col-lg-6 col-xs-6'>
+          <div class='small-box bg-". $colors."'>
             <div class='inner'>
-                 <h3 style='white-space:normal'>" . $row['name'] . "</h3><h4>Quantity Left: <b>" . $row['qty'] . "</b></h4>
+                 <h4 style='white-space:normal; font-size: 32px !important;'><b>"
+            . $row['name'] .
+            "</b></h4><h4>Quantity Left: "
+            . $row['qty'] .
+            "</b></h4>
               </div>
             </div>
           </div>";
         } ?>
         <!-- ./col -->
         <!-- <div class="col-lg-3 col-xs-6"> -->
-          <!-- small box -->
-          <!-- <div class="small-box bg-green"> -->
-            <!-- <div class="inner"> -->
-              <!-- <h3><?php echo $total_paid_orders ?></h3> -->
+        <!-- small box -->
+        <!-- <div class="small-box bg-green"> -->
+        <!-- <div class="inner"> -->
+        <!-- <h3><?php echo $total_paid_orders ?></h3> -->
 
-              <!-- <h4><b>Total Orders</b></h4> -->
-            <!-- </div> -->
-            <!-- <div class="icon"> -->
-              <!-- <i class="fa fa-dollar"></i> -->
-              <!-- </div> -->
-              <!-- <a href="<?php echo base_url('orders/') ?>" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a> -->
-              <!-- </div> -->
-              <!-- </div> -->
+        <!-- <h4><b>Total Orders</b></h4> -->
+        <!-- </div> -->
+        <!-- <div class="icon"> -->
+        <!-- <i class="fa fa-dollar"></i> -->
+        <!-- </div> -->
+        <!-- <a href="<?php echo base_url('orders/') ?>" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a> -->
+        <!-- </div> -->
+        <!-- </div> -->
         <!-- ./col -->
       </div>
       <!-- /.row -->
-      <div class="row">
+      <!-- <div class="row">
 
         <div class='col-lg-6 col-xs-6'>
           <div class='small-box bg-aqua'>
@@ -77,7 +88,7 @@ $product_forecast = calc_raw_stock($ims_connect);
               </div>
             </div>
           </div>
-      </div>
+      </div> -->
 
 
 
@@ -86,6 +97,8 @@ $product_forecast = calc_raw_stock($ims_connect);
 
 
   </section>
+  
+
   <!-- /.content -->
 </div>
 <!-- /.content-wrapper -->
