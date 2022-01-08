@@ -64,12 +64,12 @@ require_once("../env.php")
                         </div>
                         <div class="col-6">
                             <select name="products" id="products" required>
-                                <option value="Adonko Dry Gin">Adonko Dry Gin</option>
+                                <option value="Adonko Dry Gin (Roll)">Adonko Dry Gin (Roll)</option>
                                 <option value="Adonko Atadwe Ginger (Bottle)">Adonko Atadwe Ginger (Bottle)</option>
                                 <option value="Adonko 123 (Roll)">Adonko 123 (Roll)</option>
+                                <option value="Adonko 123 (Bottle)">Adonko 123 (Bottle)</option>
                                 <option value="Adonko Bitters (Roll)">Adonko Bitters (Roll)</option>
                                 <option value="Adonko Bitters (Bottle)">Adonko Bitters (Bottle)</option>
-                                <option value="Adonko 123 (Bottle)">Adonko 123 (Bottle)</option>
                             </select>
                         </div>
                     </div>

@@ -9,7 +9,7 @@ function calc_raw_stock($ims_connect)
 {
     $cap_qty = mysqli_fetch_assoc(mysqli_query($ims_connect, "SELECT * FROM `products` WHERE `name` = 'cap'"))['qty'];
     $preform_qty = mysqli_fetch_assoc(mysqli_query($ims_connect, "SELECT * FROM `products` WHERE `name` = 'preform'"))['qty'];
-    $box_qty = mysqli_fetch_assoc(mysqli_query($ims_connect, "SELECT * FROM `products` WHERE `name` = 'box'"))['qty'];
+    $box_qty = mysqli_fetch_assoc(mysqli_query($ims_connect, "SELECT * FROM `products` WHERE `name` = 'carton'"))['qty'];
 
     $number_of_products = min($cap_qty, $preform_qty);
     if ($number_of_products <= $box_qty * 24) {

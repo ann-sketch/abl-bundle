@@ -178,7 +178,7 @@ function get_qty($ims_products_connect, $products)
                                 <h5 class="box-title m-0" style="font-size: 15px;">Preforms: <?php echo $stocks_needed_to_cover_deficiency ?> </h5>
                             </ul>
                             <ul class="list-inline two-part d-flex align-items-center mb-0">
-                                <h5 class="box-title m-0" style="font-size: 15px;">Boxes: <?php echo round($stocks_needed_to_cover_deficiency / 24) ?> </h5>
+                                <h5 class="box-title m-0" style="font-size: 15px;">Cartons: <?php echo round($stocks_needed_to_cover_deficiency / 24) ?> </h5>
                             </ul>
 
                         </div>

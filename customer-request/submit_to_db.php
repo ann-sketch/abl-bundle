@@ -1,6 +1,6 @@
 <?php
 
-require_once("./connection.php");
+require_once("../env.php");
 
 
 if (empty(!$_POST['name']) and empty(!$_POST['products'])  and empty(!$_POST['qty'])) {
