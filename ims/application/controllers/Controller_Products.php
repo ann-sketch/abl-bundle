@@ -62,12 +62,23 @@ class Controller_Products extends Admin_Controller
             $availability = ($value['availability'] == 1) ? '<span class="label label-success">Active</span>' : '<span class="label label-warning">Inactive</span>';
 
             $qty_status = '';
-            if($value['qty'] <= 10) {
+            if($value['qty'] <= 100 && $value['name'] == 'CELLTAPES BOXES') {
+                $qty_status = '<span class="label label-warning">Low !</span>';
+            } else if($value['qty'] <= 252000 && $value['name'] == 'PREFORMS - TOTAL') {
+                $qty_status = '<span class="label label-warning">Low !</span>';
+            } else if($value['qty'] <= 600000 && $value['name'] == 'CAPS - TOTAL') {
+                $qty_status = '<span class="label label-warning">Low !</span>';
+            } else if($value['qty'] <= 375000 && $value['name'] == 'RUBBER BAGS - PIECES') {
+                $qty_status = '<span class="label label-warning">Low !</span>';
+            } else if($value['qty'] <= 20000 && !strpos(strtolower($value['name']), "carton")) {
                 $qty_status = '<span class="label label-warning">Low !</span>';
             } else if($value['qty'] <= 0) {
                 $qty_status = '<span class="label label-danger">Out of stock !</span>';
             }
 
+            // if($value['qty'] <= 20000 && strpos(strtolower($value['name']), "carton")) {
+            //     $qty_status = '<span class="label label-warning">Low !</span>';
+            // }
 
 			$result['data'][$key] = array(
 				// $img,
