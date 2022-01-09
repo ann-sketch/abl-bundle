@@ -7,15 +7,19 @@ $purpose = $_POST["purpose"];
 
 if ($purpose == 'approve'){
     $query = "UPDATE `products_request` SET `is_approved`='1' WHERE id='$id'" ;
+    echo $query;
 } else if ($purpose == 'supply'){
-    if (mysqli_fetch_assoc(mysqli_query($procurement_connect, "SELECT is_approved FROM `products_request` WHERE id='$id'"))["is_approved"] == 1){
+    $already_approved = mysqli_fetch_assoc(mysqli_query($procurement_connect, "SELECT is_supplied FROM `products_request` WHERE id='$id'"))["is_supplied"];
+    if ($already_approved){
+        $query = "UPDATE `products_request` SET `is_supplied`='0' WHERE id='$id'" ;
+    } else {
         $query = "UPDATE `products_request` SET `is_supplied`='1' WHERE id='$id'" ;
     }
+    // echo $already_approved;
+    
 }
-
-// echo $query;
-
 mysqli_real_query($procurement_connect, $query);
+
 $procurement_connect->close();
 // echo "success";
-header("Location: ./next-level.php");
+header('Location: ' . $_SERVER['HTTP_REFERER']);

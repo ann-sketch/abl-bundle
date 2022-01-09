@@ -7,18 +7,20 @@ $result = mysqli_query($procurement_connect, $query);
 
 function calc_raw_stock($ims_connect)
 {
-    $cap_qty = mysqli_fetch_assoc(mysqli_query($ims_connect, "SELECT * FROM `products` WHERE `name` = 'cap'"))['qty'];
-    $preform_qty = mysqli_fetch_assoc(mysqli_query($ims_connect, "SELECT * FROM `products` WHERE `name` = 'preform'"))['qty'];
-    $box_qty = mysqli_fetch_assoc(mysqli_query($ims_connect, "SELECT * FROM `products` WHERE `name` = 'box'"))['qty'];
+    $cap_qty = mysqli_fetch_assoc(mysqli_query($ims_connect, "SELECT * FROM `products` WHERE `name` = 'DRY GIN LAMINATE - PIECES'"))['qty'];
+    $preform_qty = mysqli_fetch_assoc(mysqli_query($ims_connect, "SELECT * FROM `products` WHERE `name` = 'PREFORMS - TOTAL'"))['qty'];
+    $box_qty = mysqli_fetch_assoc(mysqli_query($ims_connect, "SELECT * FROM `products` WHERE `name` = 'CARTON 123 750 ML'"))['qty'];
 
     $number_of_products = min($cap_qty, $preform_qty);
-    if ($number_of_products <= $box_qty * 24) {
+    if ($number_of_products <= $box_qty * 12) {
         return $number_of_products;
     }
+    return $box_qty * 12;
 }
+
 $product_forecast = calc_raw_stock($ims_connect);
 $number_of_finished_products = get_qty($ims_products_connect, "Adonko 123 (Bottle)");
-$total_number_of_products_requested = mysqli_fetch_assoc(mysqli_query($procurement_connect, "SELECT SUM(qty) FROM products_request WHERE product = 'Adonko 123 (Bottle)' AND is_approved = '0' ORDER BY ID DESC"))['SUM(qty)'];
+$total_number_of_products_requested = mysqli_fetch_assoc(mysqli_query($procurement_connect, "SELECT SUM(qty) FROM products_request WHERE product = 'Adonko 123 (Bottle)' AND is_approved = '0' ORDER BY ID DESC"))['SUM(qty)'] ?? 0;
 if ($number_of_finished_products > $total_number_of_products_requested) {
     $product_deficiency = 0;
 } else {
@@ -58,6 +60,7 @@ function get_qty($ims_products_connect, $products)
     <!-- Custom CSS -->
     <link href="css/style.min.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
+
     <style>
         html {
             overflow: scroll;
@@ -98,7 +101,7 @@ function get_qty($ims_products_connect, $products)
                     <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
                         <div class="d-md-flex">
                             <ol class="breadcrumb ms-auto">
-                            <li><a href="../" class="fw-normal">Back To Dashboard</li>
+                                <li><a href="../" class="fw-normal">Back To Dashboard</a></li>
                             </ol>
                         </div>
                     </div>
@@ -110,17 +113,17 @@ function get_qty($ims_products_connect, $products)
                 <!-- Three charts -->
                 <!-- ============================================================== -->
                 <div class="row justify-content-center">
-                    <div class="col-lg-2 col-md-12">
+                    <div class="col-lg-5 col-md-12">
                         <div class="white-box analytics-info" style="display: flex; height: 85%;">
                             <ul class="list-inline two-part d-flex align-items-center justify-content-around mb-0 flex-wrap">
                                 <h3 class="box-title m-0" style="font-size: 20px;">Product Name</h3>
-                                <li style="margin-left: 0px;margin-top: -80px;">
+                                <li style="margin-left: 50px;">
                                     <span class="counter text-success">Adonko 123 (Bottle)</span>
                                 </li>
                             </ul>
                         </div>
                     </div>
-                    <div class="col-lg-4 col-md-12">
+                    <div class="col-lg-6 col-md-12">
                         <div class="white-box analytics-info" style="height: 85%;">
                             <ul class="list-inline two-part d-flex align-items-center mb-0">
                                 <h3 class="box-title m-0">Number Of Finished Products Available</h3>
@@ -131,7 +134,7 @@ function get_qty($ims_products_connect, $products)
                             <ul class="list-inline two-part d-flex align-items-center mb-0">
                                 <h3 class="box-title m-0">Total Number of Products Requested</h3>
                                 <li class="ms-auto">
-                                    <span class="counter text-success"><?php echo $total_number_of_products_requested ? $total_number_of_products_requested : 0; ?></span>
+                                    <span class="counter text-success"><?php echo $total_number_of_products_requested ?></span>
                                 </li>
                             </ul>
                             <ul class="list-inline two-part d-flex align-items-center mb-0">
@@ -154,31 +157,36 @@ function get_qty($ims_products_connect, $products)
                                 </li>
                             </ul>
                             <ul class="list-inline two-part d-flex align-items-center mb-0">
-                                <h3 class="box-title m-0">Total Number of Products needed to cover deficiency</h3>
+                                <h3 class="box-title m-0">Number Of Products that Raw Stocks are unable to cover</h3>
                                 <li class="ms-auto">
                                     <span class="counter text-success">
-                                        <?php
+                                    <?php
                                         $stocks_needed_to_cover_deficiency = 0;
                                         if ($product_deficiency != 0) {
-                                            $stocks_needed_to_cover_deficiency = $product_deficiency - $product_forecast;
+                                            if ($product_forecast >= $product_deficiency) {
+                                                $stocks_needed_to_cover_deficiency = 0;
+                                            } else {
+                                                $stocks_needed_to_cover_deficiency = $product_deficiency - $product_forecast;
+                                            }
                                         }
                                         echo $stocks_needed_to_cover_deficiency;
-                                        ?></span>
+                                        ?>
+                                        </span>
                                 </li>
                             </ul>
                             <ul class="list-inline two-part d-flex align-items-center mb-0">
                                 <u>
-                                    <h3 class="box-title m-0">Deficiency In Raw Stocks</h3>
+                                    <h3 class="box-title m-0">Breakdown Of Deficiency In Raw Stocks</h3>
                                 </u>
                             </ul>
                             <ul class="list-inline two-part d-flex align-items-center mb-0">
-                                <h5 class="box-title m-0" style="font-size: 15px;">Caps: <?php echo $stocks_needed_to_cover_deficiency ?> </h5>
+                                <h5 class="box-title m-0" style="font-size: 15px;">Caps Pieces: <?php echo $stocks_needed_to_cover_deficiency ?> </h5>
                             </ul>
                             <ul class="list-inline two-part d-flex align-items-center mb-0">
-                                <h5 class="box-title m-0" style="font-size: 15px;">Preforms: <?php echo $stocks_needed_to_cover_deficiency ?> </h5>
+                                <h5 class="box-title m-0" style="font-size: 15px;">Perform Pieces: <?php echo $stocks_needed_to_cover_deficiency ?> </h5>
                             </ul>
                             <ul class="list-inline two-part d-flex align-items-center mb-0">
-                                <h5 class="box-title m-0" style="font-size: 15px;">Cartons: <?php echo round($stocks_needed_to_cover_deficiency / 24) ?> </h5>
+                                <h5 class="box-title m-0" style="font-size: 15px;">Carton Pieces <?php echo round($stocks_needed_to_cover_deficiency / 12) ?> </h5>
                             </ul>
 
                         </div>
@@ -332,6 +340,7 @@ function get_qty($ims_products_connect, $products)
         <script src="plugins/bower_components/chartist/dist/chartist.min.js"></script>
         <script src="plugins/bower_components/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.min.js"></script>
         <script src="js/pages/dashboards/dashboard1.js"></script>
+
 </body>
 
 </html>

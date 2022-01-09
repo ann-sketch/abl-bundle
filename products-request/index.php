@@ -46,7 +46,7 @@ function get_product_card($name, $requests, $number_of_products, $url, $procurem
     if ($number_of_products > $total_number_of_products_requested) {
         $product_deficiency = 0;
     } else {
-        $product_deficiency = abs(get_qty($ims_products_connect, "Adonko Next Level") - $total_number_of_products_requested);
+        $product_deficiency = abs(get_qty($ims_products_connect, $name) - $total_number_of_products_requested);
     }
     return '
     <div class="col-lg-4 col-md-12">
