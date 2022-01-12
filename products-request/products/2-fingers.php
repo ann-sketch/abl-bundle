@@ -2,14 +2,14 @@
 
 require_once("../../env.php");
 
-$query = "SELECT * FROM products_request WHERE product = 'Adonko 123 (Roll)' ORDER BY ID DESC";
+$query = "SELECT * FROM products_request WHERE product = 'Adonko 2 Fingers (Roll)' ORDER BY ID DESC";
 $result = mysqli_query($procurement_connect, $query);
 
 function calc_raw_stock($ims_connect)
 {
     $cap_qty = mysqli_fetch_assoc(mysqli_query($ims_connect, "SELECT * FROM `products` WHERE `name` = 'DRY GIN LAMINATE - PIECES'"))['qty'];
     $preform_qty = mysqli_fetch_assoc(mysqli_query($ims_connect, "SELECT * FROM `products` WHERE `name` = 'PREFORMS - TOTAL'"))['qty'];
-    $box_qty = mysqli_fetch_assoc(mysqli_query($ims_connect, "SELECT * FROM `products` WHERE `name` = 'CARTON 123 50 ML'"))['qty'];
+    $box_qty = mysqli_fetch_assoc(mysqli_query($ims_connect, "SELECT * FROM `products` WHERE `name` = 'CARTON DRY GIN 50ML'"))['qty'];
 
     $number_of_products = min($cap_qty, $preform_qty);
     if ($number_of_products <= $box_qty * 240) {
@@ -19,12 +19,12 @@ function calc_raw_stock($ims_connect)
 }
 
 $product_forecast = calc_raw_stock($ims_connect);
-$number_of_finished_products = get_qty($ims_products_connect, "Adonko 123 (Roll)");
-$total_number_of_products_requested = mysqli_fetch_assoc(mysqli_query($procurement_connect, "SELECT SUM(qty) FROM products_request WHERE product = 'Adonko 123 (Roll)' AND is_approved = '0' ORDER BY ID DESC"))['SUM(qty)'] ?? 0;
+$number_of_finished_products = get_qty($ims_products_connect, "Adonko 2 Fingers (Roll)");
+$total_number_of_products_requested = mysqli_fetch_assoc(mysqli_query($procurement_connect, "SELECT SUM(qty) FROM products_request WHERE product = 'Adonko 2 Fingers (Roll)' AND is_approved = '0' ORDER BY ID DESC"))['SUM(qty)'] ?? 0;
 if ($number_of_finished_products > $total_number_of_products_requested) {
     $product_deficiency = 0;
 } else {
-    $product_deficiency = abs(get_qty($ims_products_connect, "Adonko 123 (Roll)") - $total_number_of_products_requested);
+    $product_deficiency = abs(get_qty($ims_products_connect, "Adonko 2 Fingers (Roll)") - $total_number_of_products_requested);
 }
 
 function get_qty($ims_products_connect, $products)
@@ -118,7 +118,7 @@ function get_qty($ims_products_connect, $products)
                             <ul class="list-inline two-part d-flex align-items-center justify-content-around mb-0 flex-wrap">
                                 <h3 class="box-title m-0" style="font-size: 20px;">Product Name</h3>
                                 <li style="margin-left: 50px;">
-                                    <span class="counter text-success">Adonko 123 (Roll)</span>
+                                    <span class="counter text-success">Adonko 2 Fingers (Roll)</span>
                                 </li>
                             </ul>
                         </div>
@@ -147,7 +147,7 @@ function get_qty($ims_products_connect, $products)
                     </div>
                     <div class="col-lg-6 col-md-12">
                         <div class="white-box analytics-info">
-                        <ul class="list-inline two-part d-flex align-items-center mb-0">
+                            <ul class="list-inline two-part d-flex align-items-center mb-0">
                                 <h3 class="box-title m-0">
                                     <!-- <a href="ims/Controller_Products"></a> -->
                                     Number Of Products that Raw Stocks can Produce
@@ -188,6 +188,7 @@ function get_qty($ims_products_connect, $products)
                             <ul class="list-inline two-part d-flex align-items-center mb-0">
                                 <h5 class="box-title m-0" style="font-size: 15px;">Cartons: <?php echo number_format(round(($stocks_needed_to_cover_deficiency / 24) / 10)) ?> </h5>
                             </ul>
+
                         </div>
                     </div>
                     <!-- <div class="col-lg-4 col-md-12">

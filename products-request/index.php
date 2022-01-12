@@ -26,6 +26,7 @@ $product_forecast = calc_raw_stock($ims_connect);
 // Adonko 123 (Bottle)
 
 $dry_gin_requests = mysqli_num_rows(mysqli_query($procurement_connect, "SELECT id FROM products_request WHERE product = 'Adonko Dry Gin (Roll)'"));
+$adonko_2_fingers_requests = mysqli_num_rows(mysqli_query($procurement_connect, "SELECT id FROM products_request WHERE product = 'Adonko 2 Fingers (Roll)'"));
 $atadwe_ginger_requests = mysqli_num_rows(mysqli_query($procurement_connect, "SELECT id FROM products_request WHERE product = 'Adonko Atadwe Ginger (Bottle)'"));
 $adonko_123_roll_requests = mysqli_num_rows(mysqli_query($procurement_connect, "SELECT id FROM products_request WHERE product = 'Adonko 123 (Roll)'"));
 $adonko_123_bottle_requests = mysqli_num_rows(mysqli_query($procurement_connect, "SELECT id FROM products_request WHERE product = 'Adonko 123 (Bottle)'"));
@@ -34,6 +35,7 @@ $adonko_bitters_bottle_requests = mysqli_num_rows(mysqli_query($procurement_conn
 
 
 $dry_gin_number_of_finished_products = get_qty($ims_products_connect, "Adonko Dry Gin (Roll)");
+$adonko_2_fingers_number_of_finished_products = get_qty($ims_products_connect, "Adonko 2 Fingers (Roll)");
 $atadwe_ginger_number_of_finished_products = get_qty($ims_products_connect, "Adonko Atadwe Ginger (Bottle)");
 $adonko_123_roll_number_of_finished_products = get_qty($ims_products_connect, "Adonko 123 (Roll)");
 $adonko_123_bottle_number_of_finished_products = get_qty($ims_products_connect, "Adonko 123 (Bottle)");
@@ -56,15 +58,15 @@ function get_product_card($name, $requests, $number_of_products, $url, $procurem
             </h3>
             <ul class="list-inline two-part d-flex align-items-center m-0">
                 <h3 class="m-0">Number of Requests</h3>
-                <li class="ms-auto"><span class="counter text-success">' . ($requests ? $requests : 0) . '</span></li>
+                <li class="ms-auto"><span class="counter text-success">' . (number_format($requests) ? $requests : 0) . '</span></li>
             </ul>
             <ul class="list-inline two-part d-flex align-items-center m-0">
                 <h3 class="m-0">Products Remaining</h3>
-                <li class="ms-auto"><span class="counter text-success">' . $number_of_products . '</span></li>
+                <li class="ms-auto"><span class="counter text-success">' . number_format($number_of_products) . '</span></li>
             </ul>
             <ul class="list-inline two-part d-flex align-items-center m-0">
                 <h3 class="m-0">Deficiency</h3>
-                <li class="ms-auto"><span class="counter text-success">' . $product_deficiency . '</span></li>
+                <li class="ms-auto"><span class="counter text-success">' . number_format($product_deficiency) . '</span></li>
             </ul>
         </div>
     </div>
@@ -178,6 +180,7 @@ function get_qty($ims_products_connect, $products)
                     echo get_product_card("Adonko 123 (Bottle)", $adonko_123_bottle_requests, $adonko_123_bottle_number_of_finished_products, "123-bottle", $procurement_connect, $ims_products_connect);
                     echo get_product_card("Adonko Bitters (Roll)", $adonko_bitters_roll_requests, $adonko_bitters_roll_number_of_finished_products, "bitter-roll", $procurement_connect, $ims_products_connect);
                     echo get_product_card("Adonko Bitters (Bottle)", $adonko_bitters_bottle_requests, $adonko_bitters_bottle_number_of_finished_products, "bitters-bottle", $procurement_connect, $ims_products_connect);
+                    echo get_product_card("Adonko 2 Fingers (Roll)", $adonko_2_fingers_requests, $adonko_123_roll_number_of_finished_products, "2-fingers", $procurement_connect, $ims_products_connect);
                     ?>
                 </div>
             </div>

@@ -73,7 +73,7 @@ class Controller_Products extends Admin_Controller
 				// $value['sku'],
 				$value['name'],
 				// $value['price'],
-                $value['qty'] . ' ' . $qty_status,
+                number_format($value['qty']) . ' ' . $qty_status,
                 $store_data['name'],
 				$availability,
 				$buttons

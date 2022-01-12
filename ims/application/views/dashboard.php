@@ -8,7 +8,7 @@ $password = getenv('password');
 
 
 $ims_connect = mysqli_connect($hostname, $username, $password, "ims_db_gh");
-$query = "SELECT name, qty FROM `products`";
+$query = "SELECT name, qty FROM `products` ORDER BY name ASC";
 $result = mysqli_query($ims_connect, $query);
 
 function calc_raw_stock($ims_connect)
@@ -32,7 +32,6 @@ $product_forecast = calc_raw_stock($ims_connect);
   <section class="content-header">
     <h1>
       Dashboard
-
     </h1>
     <ol class="breadcrumb">
       <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -55,7 +54,7 @@ $product_forecast = calc_raw_stock($ims_connect);
                  <h4 style='white-space:normal; font-size: 32px !important;'><b>"
             . $row['name'] .
             "</b></h4><h4>Quantity Left: "
-            . $row['qty'] .
+            . number_format($row['qty']) .
             "</b></h4>
               </div>
             </div>

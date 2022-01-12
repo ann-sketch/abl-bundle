@@ -128,19 +128,19 @@ function get_qty($ims_products_connect, $products)
                             <ul class="list-inline two-part d-flex align-items-center mb-0">
                                 <h3 class="box-title m-0">Number Of Finished Products Available</h3>
                                 <li class="ms-auto">
-                                    <span class="counter text-success"><?php echo $number_of_finished_products ?></span>
+                                    <span class="counter text-success"><?php echo number_format($number_of_finished_products) ?></span>
                                 </li>
                             </ul>
                             <ul class="list-inline two-part d-flex align-items-center mb-0">
                                 <h3 class="box-title m-0">Total Number of Products Requested</h3>
                                 <li class="ms-auto">
-                                    <span class="counter text-success"><?php echo $total_number_of_products_requested ?></span>
+                                    <span class="counter text-success"><?php echo number_format($total_number_of_products_requested) ?></span>
                                 </li>
                             </ul>
                             <ul class="list-inline two-part d-flex align-items-center mb-0">
-                                <h3 class="box-title m-0">Deficiency in Products</h3>
+                                <h3 class="box-title m-0 text-danger">Deficiency in Products</h3>
                                 <li class="ms-auto">
-                                    <span class="counter text-success"><?php echo $product_deficiency ?></span>
+                                    <span class="counter text-danger"><?php echo number_format($product_deficiency) ?></span>
                                 </li>
                             </ul>
                         </div>
@@ -153,7 +153,7 @@ function get_qty($ims_products_connect, $products)
                                     Number Of Products that Raw Stocks can Produce
                                 </h3>
                                 <li class="ms-auto">
-                                    <span class="counter text-success"><?php echo $product_forecast ?></span>
+                                    <span class="counter text-success"><?php echo number_format($product_forecast) ?></span>
                                 </li>
                             </ul>
                             <ul class="list-inline two-part d-flex align-items-center mb-0">
@@ -169,7 +169,7 @@ function get_qty($ims_products_connect, $products)
                                                 $stocks_needed_to_cover_deficiency = $product_deficiency - $product_forecast;
                                             }
                                         }
-                                        echo $stocks_needed_to_cover_deficiency;
+                                        echo number_format($stocks_needed_to_cover_deficiency);
                                         ?>
                                     </span>
                                 </li>
@@ -180,13 +180,13 @@ function get_qty($ims_products_connect, $products)
                                 </u>
                             </ul>
                             <ul class="list-inline two-part d-flex align-items-center mb-0">
-                                <h5 class="box-title m-0" style="font-size: 15px;">Laminate Pieces: <?php echo $stocks_needed_to_cover_deficiency ?> </h5>
+                                <h5 class="box-title m-0" style="font-size: 15px;">Laminate Pieces: <?php echo number_format($stocks_needed_to_cover_deficiency) ?> </h5>
                             </ul>
                             <ul class="list-inline two-part d-flex align-items-center mb-0">
-                                <h5 class="box-title m-0" style="font-size: 15px;">Rubber Bags: <?php echo round($stocks_needed_to_cover_deficiency / 24) ?> </h5>
+                                <h5 class="box-title m-0" style="font-size: 15px;">Rubber Bags: <?php echo number_format(round($stocks_needed_to_cover_deficiency / 24)) ?> </h5>
                             </ul>
                             <ul class="list-inline two-part d-flex align-items-center mb-0">
-                                <h5 class="box-title m-0" style="font-size: 15px;">Cartons: <?php echo round(($stocks_needed_to_cover_deficiency / 24) / 10) ?> </h5>
+                                <h5 class="box-title m-0" style="font-size: 15px;">Cartons: <?php echo number_format(round(($stocks_needed_to_cover_deficiency / 24) / 10)) ?> </h5>
                             </ul>
 
                         </div>
@@ -269,7 +269,7 @@ function get_qty($ims_products_connect, $products)
                                                 <tr>  
                                                     <td>' . $row["name"] . '</td>  
                                                     <td>' . $row["product"] . '</td>  
-                                                    <td>' . $row["qty"] . '</td>  
+                                                    <td>' . number_format($row["qty"]) . '</td>  
                                                     <td>' . $row["date"] . '</td>  
                                                     <td>' . "
                                                     <form action='update_db.php' method='POST'>

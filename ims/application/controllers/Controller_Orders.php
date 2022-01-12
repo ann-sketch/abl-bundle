@@ -320,7 +320,7 @@ class Controller_Orders extends Admin_Controller
 			          	
 			          	$html .= '<tr>
 				            <td>'.$product_data['name'].'</td>
-				            <td>'.$v['qty'].'</td>
+				            <td>'.number_format($v['qty']).'</td>
 			          	</tr>';
 			          }
 			          
