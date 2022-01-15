@@ -51,13 +51,3 @@ function calc_raw_stock($ims_connect)
         return $number_of_products;
     }
 }
-
-
-
-// echo '<pre>';
-// var_dump($b);
-// echo '</pre>';
-
-
-// $procurement_connect->close();
-// header("Location: ./index.php");

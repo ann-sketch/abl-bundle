@@ -1,0 +1,1 @@
+main.py is suppossed to be run at 6am for the morning stock

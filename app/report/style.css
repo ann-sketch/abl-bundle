@@ -1,0 +1,27 @@
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.item-card {
+  padding: 70px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
+  width: 45%;
+
+  border-radius: 50px;
+  color: #fff;
+
+  background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+   
+}
+.item-card a {
+    text-decoration: none;
+    color: #fff;
+}

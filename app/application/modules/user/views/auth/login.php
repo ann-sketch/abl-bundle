@@ -117,7 +117,10 @@
           <?php echo form_close(); ?>
         </section>
         <a href="<?php echo $_SERVER['req_url'] ?>">
-          <button class="btn btn-warning btn-block">Make a Request</button>
+          <button class="btn btn-success btn-block">Make a Request</button>
+        </a>
+        <a href="<?php echo $_SERVER['usage_url'] ?>">
+          <button class="btn btn-warning btn-block">Enter Daily Usage</button>
         </a>
         <p><a href="<?php echo base_url('user/auth/forgot_password'); ?>"><?php echo lang('login_forgot_password'); ?></a></p>
       </div>
