@@ -1,6 +1,6 @@
 <?php
 $connect = mysqli_connect("localhost", "root", "", "procurement_db");
-$query = "SELECT * FROM daily_usage ORDER BY ID DESC";
+$query = "SELECT * FROM daily_usage ORDER BY timestamp DESC";
 $result = mysqli_query($connect, $query);
 $connect->close();
 ?>
