@@ -1,0 +1,48 @@
+create restock feature ie. adding stock to exisitng inventory.
+create reversal feature ie. reverse wrong input of adding stock to existing inventory(store reversal history)
+create restock report by date feature. ie. generate restock report for each product at
+a given point in time. 
+create stock level before restocking coulmn. ie to know what stock was currently available before adding new stock
+add date time feature to 1. manage order table 2. restock history table(to be created)
+
+select restock_qty from restock_table where restock_id=1(label) and datetime=""
+
+add product name to order_datatable.
+
+
+
+
+
+Adonko 123
+----------------------------------------------------------------
+
+
+
+OPENING CLOSING STOCK SIMPLEX
+----------------------------------------------------------------
+
+
+SELECT PRODUCT.....PREFORMS.......  
+
+OPEN FORM
+
+OPEN STOCK QTY:50   INPUT CLOSING STOCK QTY:.45...
+
+NB: IF PREVIOUS CLOSING STOCK IS NULL THERE MUST BE AN ALERT
+
+
+
+
+
+
+
+
+PERFORMS
+123 BITTERS 750ML
+
+
+
+
+
+
+
