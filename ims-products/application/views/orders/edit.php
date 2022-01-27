@@ -68,7 +68,7 @@
                     </div>
                   </div>
 
-                  <div class="form-group">
+                  <div class="form-group" style="display: none;">
                     <label for="gross_amount" class="col-sm-5 control-label" style="text-align:left;">Requester's Phone</label>
                     <div class="col-sm-7">
                       <input type="text" class="form-control" id="customer_phone" name="customer_phone" placeholder="Enter Requester's Phone" value="<?php echo $order_data['order']['customer_phone'] ?>" autocomplete="off">

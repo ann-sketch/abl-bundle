@@ -1,14 +1,14 @@
 <?php
-include "../../../env.php";
-$query = "SELECT * FROM daily_usage WHERE item='caps' ORDER BY timestamp DESC";
-$result = mysqli_query($procurement_connect, $query);
+include "../../env.php";
+$query = "SELECT * FROM `restock_history` ORDER BY ID DESC";
+$result = mysqli_query($ims_products_connect, $query); 
 ?>
 
 <!DOCTYPE html>
 <html>
 
 <head>
-  <!-- <title>Adonko Bitters Ltd</title> -->
+  <title>Adonko Bitters Ltd</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/2.0.1/css/buttons.dataTables.min.css">
   <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css" />
@@ -33,7 +33,7 @@ $result = mysqli_query($procurement_connect, $query);
       function(settings, data, dataIndex) {
         var min = minDate.val();
         var max = maxDate.val();
-        var date = new Date(data[3]);
+        var date = new Date(data[2]);
 
         if (
           (min === null && max === null) ||
@@ -58,12 +58,10 @@ $result = mysqli_query($procurement_connect, $query);
 
       // DataTables initialisation
       var table = $('#employee_data').DataTable({
-        dom: 'lBfrtip',
+        dom: 'Bfrtip',
         buttons: [
           'copy', 'csv', 'excel', 'pdf', 'print'
-        ],
-        pageLength: 50,
-    lengthMenu: [0, 5, 10, 20, 50, 100, 200, 500],
+        ]
       });
 
       // Refilter the table
@@ -79,7 +77,7 @@ $result = mysqli_query($procurement_connect, $query);
   <div class="container">
     <h2 align="center">Adonko Bitters Ltd</h2>
     <hr>
-    <h5 align="center">Caps Usage</h5>
+    <h5 align="center">Restock History</h5>
     <hr>
     <table border="0" cellspacing="5" cellpadding="5">
       <tbody>
@@ -98,8 +96,7 @@ $result = mysqli_query($procurement_connect, $query);
         <thead>
           <tr>
             <td>Item</td>
-            <td>Opening Stock Qty</td>
-            <td>Closing Stock Qty</td>
+            <td>Description</td>
             <td>Timestamp</td>
           </tr>
         </thead>
@@ -109,15 +106,13 @@ $result = mysqli_query($procurement_connect, $query);
         } else {
           while ($row = mysqli_fetch_array($result)) {
             $row["item"] = $row["item"] ?: "---";
-            $row['opening'] = $row["opening"] ?: "---";
-            $row["closing"] = $row["closing"] ?: "---";
+            $row['description'] = $row["description"] ?: "---";
             $row["timestamp"] = $row["timestamp"] ?: "---";
 
             echo '  
                                    <tr>  
                                         <td>' . $row["item"] . '</td>  
-                                        <td>' . $row["opening"]  . '</td>  
-                                        <td>' . $row["closing"] . '</td>  
+                                        <td>' . $row["description"]  . '</td>  
                                         <td>' . $row["timestamp"] . '</td>  
                                    </tr>  
                                    ';

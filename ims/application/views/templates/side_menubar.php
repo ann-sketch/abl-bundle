@@ -87,6 +87,7 @@
         </li>
       <?php endif; ?>
 
+      <li><a href="<?php echo base_url('/report') ?>"><i class="fa fa-bar-chart"></i> <span>Daily Usage Report</span></a></li>
       <li><a href="<?php echo base_url('/restock_history') ?>"><i class="glyphicon glyphicon-list-alt"></i> <span>Restock History</span></a></li>
 
       <?php if ($user_permission) : ?>

@@ -51,11 +51,11 @@
               <tr>
                 <th>Order no</th>
                 <th>Requester's Name</th>
-                <th>Requester's Phone</th>
+                <!-- <th>Requester's Phone</th> -->
                 <th>Date Time</th>
-                <th>Total Products</th>
+                <!-- <th>Total Products</th> -->
                 <!-- <th>Total Amount</th> -->
-             
+                <th>Product Detail</th>
                 <?php if(in_array('updateOrder', $user_permission) || in_array('viewOrder', $user_permission) || in_array('deleteOrder', $user_permission)): ?>
                   <th>Action</th>
                 <?php endif; ?>
@@ -117,8 +117,12 @@ $j(document).ready(function() {
 
   // initialize the datatable 
   manageTable = $('#manageTable').DataTable({
+    dom: 'Bfrtip',
+        buttons: [
+            'copy', 'csv', 'excel'
+        ],
     'ajax': base_url + 'Controller_Orders/fetchOrdersData',
-    'order': []
+    'order': [],
   });
 
 });

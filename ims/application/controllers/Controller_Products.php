@@ -84,53 +84,6 @@ class Controller_Products extends Admin_Controller
                 $qty_status = '<span class="label label-danger">Out of stock !</span>';
             }
 
-            $buttons .= '
-			<!-- Button trigger modal -->
-				<button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal' . $value['id'] . '">
-				Restock
-				</button 
-				
-				<!-- Modal -->
-				<div class="modal fade" id="exampleModal' . $value['id'] . '" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-				<div class="modal-dialog" role="document">
-				<div class="modal-content">
-				<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-						</button>
-					</div>
-					<div class="modal-body">
-                    <div class="form-group">
-                        <label for="item">' . $name . '</label>
-                        <input type="number" class="form-control" id="qty" name="qty" placeholder="Enter Restock Quantity" required>
-                        <input type="hidden" id="name" name="name" value="' . $name . '">
-                        <input type="hidden" id="prev_qty" name="prev_qty" value="' . $prev_qty . '">
-					</div>
-					<div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                      <button type="submit" class="btn btn-success" onclick=restock() id="restock">Restock</button>
-                    </div>
-					</div>
-				</div>
-				</div>
-
-                <script>
-                    function restock() {
-                        console.log("restock");
-                        $.post("../utils/submit_to_db.php", {
-                                name: $("#name").val(),
-                                qty: $("#qty").val(),
-                                prev_qty: $("#prev_qty").val(),
-                            },
-                            function(text) {
-                                document.getElementById("restock").innerHTML = text;
-                            });
-                    }
-                </script>
-
-			';
-
-
             // Product: '.$value['id'].'
             // 		<br>
             // 		Quantity: '.$qty.'

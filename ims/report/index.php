@@ -1,7 +1,7 @@
 <?php
-include "../../../env.php";
-$query = "SELECT * FROM daily_usage WHERE item='tigernut' ORDER BY timestamp DESC";
-$result = mysqli_query($procurement_connect, $query);
+include "../../env.php";
+$query = "SELECT * FROM daily_usage";
+$result = mysqli_query($ims_connect, $query);
 ?>
 
 <!DOCTYPE html>
@@ -63,7 +63,10 @@ $result = mysqli_query($procurement_connect, $query);
           'copy', 'csv', 'excel', 'pdf', 'print'
         ],
         pageLength: 50,
-    lengthMenu: [0, 5, 10, 20, 50, 100, 200, 500],
+        lengthMenu: [0, 5, 10, 20, 50, 100, 200, 500],
+        "order": [
+          [3, "desc"]
+        ]
       });
 
       // Refilter the table
@@ -72,48 +75,88 @@ $result = mysqli_query($procurement_connect, $query);
       });
     });
   </script>
+  <style>
+    /* Set a background image by replacing the URL below */
+    body {
+      background: url('https://source.unsplash.com/twukN12EN7c/1920x1080') no-repeat center center fixed;
+      -webkit-background-size: cover;
+      -moz-background-size: cover;
+      background-size: cover;
+      -o-background-size: cover;
+    }
+  </style>
 </head>
 
 <body>
-  <br /><br />
-  <div class="container">
-    <h2 align="center">Adonko Bitters Ltd</h2>
-    <hr>
-    <h5 align="center">Tigernut Usage</h5>
-    <hr>
-    <table border="0" cellspacing="5" cellpadding="5">
-      <tbody>
-        <tr>
-          <td>Starting date:</td>
-          <td><input type="text" id="min" name="min"></td>
-        </tr>
-        <tr>
-          <td>Ending date:</td>
-          <td><input type="text" id="max" name="max"></td>
-        </tr>
-      </tbody>
-    </table>
-    <div class="table-responsive">
-      <table id="employee_data" class="table table-striped table-bordered">
-        <thead>
-          <tr>
-            <td>Item</td>
-            <td>Opening Stock Qty</td>
-            <td>Closing Stock Qty</td>
-            <td>Timestamp</td>
-          </tr>
-        </thead>
-        <?php
-        if ($result === false) {
-          echo "Error: " . $query . "<br>" . $connect->error;
-        } else {
-          while ($row = mysqli_fetch_array($result)) {
-            $row["item"] = $row["item"] ?: "---";
-            $row['opening'] = $row["opening"] ?: "---";
-            $row["closing"] = $row["closing"] ?: "---";
-            $row["timestamp"] = $row["timestamp"] ?: "---";
+  <!-- Navigation -->
+  <!-- <nav class="navbar navbar-expand-lg navbar-light bg-light static-top mb-5 shadow">
+    <div class="container">
+      <a class="navbar-brand" href="#">Start Bootstrap</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Services</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Contact</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav> -->
 
-            echo '  
+  <!-- Page Content -->
+  <div class="container">
+    <div class="card border-0 shadow my-5">
+      <div class="card-body p-5">
+        <br /><br />
+        <div class="container">
+          <h2 align="center">Adonko Bitters Ltd</h2>
+          <hr>
+          <h5 align="center">Daily Usage Report</h5>
+          <hr>
+          <table border="0" cellspacing="5" cellpadding="5">
+            <tbody>
+              <tr>
+                <td>Starting date:</td>
+                <td><input type="text" id="min" name="min"></td>
+              </tr>
+              <tr>
+                <td>Ending date:</td>
+                <td><input type="text" id="max" name="max"></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="table-responsive">
+            <table id="employee_data" class="table table-striped table-bordered">
+              <thead>
+                <tr>
+                  <td>Item</td>
+                  <td>Opening Stock Qty</td>
+                  <td>Closing Stock Qty</td>
+                  <td>Timestamp</td>
+                </tr>
+              </thead>
+              <?php
+              if ($result === false) {
+                echo "Error: " . $query . "<br>" . $connect->error;
+              } else {
+                while ($row = mysqli_fetch_array($result)) {
+                  $row["item"] = $row["item"] ?: "---";
+                  $row['opening'] = $row["opening"] ?: "---";
+                  $row["closing"] = $row["closing"] ?: "---";
+                  $row["timestamp"] = $row["timestamp"] ?: "---";
+
+                  echo '  
                                    <tr>  
                                         <td>' . $row["item"] . '</td>  
                                         <td>' . $row["opening"]  . '</td>  
@@ -121,11 +164,14 @@ $result = mysqli_query($procurement_connect, $query);
                                         <td>' . $row["timestamp"] . '</td>  
                                    </tr>  
                                    ';
-          }
-        }
+                }
+              }
 
-        ?>
-      </table>
+              ?>
+            </table>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </body>

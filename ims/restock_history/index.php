@@ -1,6 +1,6 @@
 <?php
 include "../../env.php";
-$query = "SELECT * FROM `restock_history` ORDER BY ID DESC";
+$query = "SELECT * FROM `restock_history` ORDER BY timestamp DESC";
 $result = mysqli_query($ims_connect, $query);
 ?>
 
@@ -8,7 +8,7 @@ $result = mysqli_query($ims_connect, $query);
 <html>
 
 <head>
-  <!-- <title>Adonko Bitters Ltd</title> -->
+  <title>Adonko Bitters Ltd</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/2.0.1/css/buttons.dataTables.min.css">
   <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css" />
@@ -33,7 +33,7 @@ $result = mysqli_query($ims_connect, $query);
       function(settings, data, dataIndex) {
         var min = minDate.val();
         var max = maxDate.val();
-        var date = new Date(data[3]);
+        var date = new Date(data[2]);
 
         if (
           (min === null && max === null) ||
@@ -58,10 +58,13 @@ $result = mysqli_query($ims_connect, $query);
 
       // DataTables initialisation
       var table = $('#employee_data').DataTable({
-        dom: 'Bfrtip',
+        dom: 'Bfrltip',
         buttons: [
           'copy', 'csv', 'excel', 'pdf', 'print'
-        ]
+        ],
+        pageLength: 100,
+        lengthMenu: [30, 50, 100, 500, 1000],
+        order: [[ 2, "desc" ]],
       });
 
       // Refilter the table
@@ -110,12 +113,12 @@ $result = mysqli_query($ims_connect, $query);
             $row["timestamp"] = $row["timestamp"] ?: "---";
 
             echo '  
-                                   <tr>  
-                                        <td>' . $row["item"] . '</td>  
-                                        <td>' . $row["description"]  . '</td>  
-                                        <td>' . $row["timestamp"] . '</td>  
-                                   </tr>  
-                                   ';
+                  <tr>  
+                       <td>' . $row["item"] . '</td>  
+                       <td>' . $row["description"]  . '</td>  
+                       <td>' . $row["timestamp"] . '</td>  
+                  </tr>  
+                  ';
           }
         }
 
